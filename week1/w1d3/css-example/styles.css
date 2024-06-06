@@ -1,0 +1,6 @@
+.inner {
+  border: 2px blue dashed;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+}
