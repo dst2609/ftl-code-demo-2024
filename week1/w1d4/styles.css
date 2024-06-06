@@ -1,0 +1,28 @@
+.parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: purple;
+  height: 50vh;
+  flex-wrap: wrap;
+}
+
+.units {
+  background-color: lavender;
+  margin: 5px;
+  padding: 20px;
+  border: 2px, solid black;
+  flex: 5;
+}
+
+@media screen and (max-width: 768px) {
+  .parent {
+    /* display: flex; */
+    flex-direction: column;
+  }
+
+  .units {
+    background-color: aquamarine;
+  }
+}
