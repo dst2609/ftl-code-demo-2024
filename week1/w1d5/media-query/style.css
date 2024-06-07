@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.item {
+    width: 20%;
+    height: 100px;
+    border: 1px black dotted;
+}
+
+@media screen and (max-width: 800px) {
+    .item {
+        width: 40%;
+    }
+}
+  
+  
