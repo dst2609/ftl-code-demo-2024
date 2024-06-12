@@ -52,6 +52,9 @@ img {
   color: red;
 }
 
+.like-count {
+  color: purple;
+}
 .modal {
   display: none;
   position: fixed;

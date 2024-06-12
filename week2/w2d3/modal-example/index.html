@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Music Playlist Modal Example</title>
+    <title>Playlist Modal Example</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="playlist-container" class="playlist-container"></div>
+    <!-- Modal for Playlist Details -->
+
+    <div id="playlist-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <img id="modal-cover" src="" alt="Playlist Cover" />
+        <h3 id="modal-name">Playlist Name</h3>
+        <p id="modal-creator">Creator:</p>
+        <button id="shuffle-button">Shuffle Songs</button>
+        <ul id="modal-songs"></ul>
+      </div>
+    </div>
+
     <script src="data.js"></script>
     <script src="script.js"></script>
   </body>

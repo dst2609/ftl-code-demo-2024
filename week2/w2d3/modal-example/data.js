@@ -1,7 +1,7 @@
 let playlistsData = {
   playlists: [
     {
-      cover: "image1.jpeg",
+      cover: "image3.jpeg",
       name: "Chill Vibes",
       creator: "Alice",
       likes: 42,
