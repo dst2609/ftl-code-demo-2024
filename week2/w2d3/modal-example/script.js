@@ -27,7 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     tile.addEventListener("click", (event) => {
-      openModal(playlist);
+      // Check if the click is not on the heart icon
+      if (!event.target.classList.contains(".heart-icon")) {
+        openModal(playlist);
+      }
+
+      // Add a click event listener to the heart icon to like the playlist
+      const heartIcon = tile.querySelector(".heart-icon");
+      heartIcon.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevent the click event from propagating to the tile
+        const likeCountElement = heartIcon.nextElementSibling;
+        let likeCount = parseInt(likeCountElement.textContent);
+        likeCount++; //add 1 to the like
+        heartIcon.classList.add("liked");
+        likeCountElement.textContent = likeCount;
+      });
     });
 
     // Function to open the modal with playlist details
@@ -58,6 +72,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".close-button").addEventListener("click", () => {
       document.getElementById("playlist-modal").style.display = "none";
     });
+
+    // Event listener to shuffle songs in the modal
+    document.getElementById("shuffle-button").addEventListener("click", () => {
+      //shuffle songs randmoly
+      const songList = document.getElementById("modal-songs");
+      //do random shuffle
+      const songs = Array.from(songList.children);
+      songs.sort(() => Math.random() - 0.5);
+      songList.innerHTML = "";
+      songs.forEach((song) => songList.appendChild(song)); //appends shuffled songs
+    });
+
     return tile;
   }
 });
