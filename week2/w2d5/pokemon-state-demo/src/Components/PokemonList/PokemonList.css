@@ -1,0 +1,36 @@
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+  background-color: #f0f0f0; /* Light grey background */
+}
+
+.pokemon-item {
+  flex: 0 1 300px; /* Flex items have a base size of 300px but can grow and shrink */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+}
+
+.pokemon-item img {
+  width: 100px; /* Fixed size for Pokémon images */
+  height: 100px;
+  object-fit: cover;
+}
+
+.pokemon-item h4 {
+  margin: 10px 0;
+  color: #333;
+}
+
+.pokemon-item p {
+  font-size: 14px;
+  color: #666;
+}
