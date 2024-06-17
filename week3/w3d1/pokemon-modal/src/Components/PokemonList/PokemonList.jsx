@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import PokemonCard from "../PokemonCard/PokemonCard";
+import Modal from "../Modal/Modal";
 import "./PokemonList.css";
 
 function PokemonList() {
   const [pokemons, setPokemons] = useState([]);
-  // const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -37,14 +39,31 @@ function PokemonList() {
       <div className="pokemon-list">
         {filteredPokemons.map((pokemon) => (
           <div className="pokemon-item" key={pokemon.name}>
-            <img
-              src={`https://img.pokemondb.net/artwork/large/${pokemon.name}.jpg`}
-              alt={pokemon.name}
+            <PokemonCard
+              name={pokemon.name}
+              imageUrl={`https://img.pokemondb.net/artwork/large/${pokemon.name}.jpg`}
+              onClick={() => setSelectedPokemon(pokemon)}
+              // onClick={() => console.log("click pokemon + ", pokemon)}
             />
-            <h4>{pokemon.name}</h4>
           </div>
         ))}
       </div>
+      {/* Only display Modal when pokemoncard is clicked/selected */}
+      {/* If selected pokemon is not null then show modal.... */}
+
+      {selectedPokemon && (
+        <Modal
+          show={selectedPokemon !== null}
+          onClose={() => setSelectedPokemon(null)}
+        >
+          <h2>{selectedPokemon.name}</h2>
+          <img
+            src={`https://img.pokemondb.net/artwork/large/${selectedPokemon.name}.jpg`}
+            alt={selectedPokemon.name}
+            style={{ width: "100%" }}
+          />
+        </Modal>
+      )}
     </>
   );
 }
