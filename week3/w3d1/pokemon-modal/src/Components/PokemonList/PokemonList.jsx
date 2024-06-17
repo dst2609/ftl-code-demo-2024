@@ -51,6 +51,8 @@ function PokemonList() {
       {/* Only display Modal when pokemoncard is clicked/selected */}
       {/* If selected pokemon is not null then show modal.... */}
 
+      {/* Ternary statement  */}
+
       {selectedPokemon && (
         <Modal
           show={selectedPokemon !== null}
