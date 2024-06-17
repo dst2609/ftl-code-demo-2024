@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <div>App</div>
+      {/* <div>App</div> */}
       <PokemonList />
     </>
   );

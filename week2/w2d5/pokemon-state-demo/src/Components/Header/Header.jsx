@@ -1,10 +1,11 @@
 import React from "react";
+import "./Header.css";
 
 const Header = () => {
   return (
-    <>
-      <h1>PokemonList</h1>
-    </>
+    <header className="app-header">
+      <h1>Pokemon List</h1>
+    </header>
   );
 };
 
