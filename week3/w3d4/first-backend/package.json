@@ -1,0 +1,16 @@
+{
+  "name": "first-backend",
+  "version": "1.0.0",
+  "description": "this is the first backend application for FTL -2024",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Devarsh Thaker",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}
