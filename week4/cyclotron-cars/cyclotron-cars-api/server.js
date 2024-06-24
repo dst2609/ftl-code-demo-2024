@@ -1,8 +1,11 @@
 const express = require("express");
 const PORT = 3000;
+const cors = require("cors");
 const carRoutes = require("./routes/carRoutes");
 
 const app = express();
+// Middleware
+app.use(cors()); // Enable CORS middleware to handle cross-origin requests
 
 app.use(express.json());
 
