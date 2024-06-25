@@ -5,10 +5,14 @@ import CarForm from "../CarForm/CarForm";
 const CarList = () => {
   const [cars, setCars] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null);
+  const [make, setMake] = useState("");
+  const [sort, setSort] = useState("");
 
-  const fetchCars = async () => {
+  const fetchCars = async (params = {}) => {
     try {
-      const response = await axios.get("http://localhost:3000/cars");
+      const response = await axios.get("http://localhost:3000/cars", {
+        params,
+      });
       console.log("Fetched cars:", response.data); // Log the response data
       setCars(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
@@ -20,6 +24,13 @@ const CarList = () => {
   useEffect(() => {
     fetchCars();
   }, []);
+
+  const handleApply = () => {
+    const params = {};
+    if (make) params.make = make;
+    if (sort) params.sort = sort;
+    fetchCars(params);
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -33,6 +44,25 @@ const CarList = () => {
   return (
     <div>
       <h1>Car List</h1>
+      <div>
+        <label>
+          Filter by Make:
+          <input
+            type="text"
+            value={make}
+            onChange={(e) => setMake(e.target.value)}
+          />
+        </label>
+        <label>
+          Sort by Make:
+          <select value={sort} onChange={(e) => setSort(e.target.value)}>
+            <option value="">None</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </label>
+        <button onClick={handleApply}>Apply</button>
+      </div>
       <button onClick={() => setSelectedCar({})}>Add Car</button>
       {selectedCar && (
         <CarForm
