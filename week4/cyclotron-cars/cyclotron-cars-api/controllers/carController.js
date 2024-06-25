@@ -3,8 +3,24 @@ const carModel = require("../models/carModel");
 
 // Function gets all the cars
 const getAllCars = async (req, res) => {
+  const { make, year, sort } = req.query;
+  let filter = {}; //filter object
+  let orderBy = {}; //orderBy - asc/desc
+
+  if (make) {
+    filter.make = make;
+  }
+  if (year) {
+    filter.year = parseInt(year);
+  }
+
+  if (sort) {
+    //set the orderBy according to asc/desc
+    orderBy = { make: sort === "asc" ? "asc" : "desc" };
+  }
+
   try {
-    const cars = await carModel.getAllCars();
+    const cars = await carModel.getAllCars(filter, orderBy);
     res.status(200).json(cars);
   } catch (error) {
     res.status(400).json({ error: error.message });

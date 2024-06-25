@@ -2,8 +2,11 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // Function gets all the cars
-const getAllCars = async () => {
-  return prisma.car.findMany();
+const getAllCars = async (filter = {}, orderBy = {}) => {
+  return prisma.car.findMany({
+    where: filter,
+    orderBy: orderBy,
+  });
 };
 
 //Function to get car by ID
