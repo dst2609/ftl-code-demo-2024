@@ -3,6 +3,8 @@ const PORT = 3000;
 const cors = require("cors");
 const morgan = require("morgan");
 
+// import the userRoutes
+const userRoutes = require("./routes/userRoutes");
 //import the carRoutes
 const carRoutes = require("./routes/carRoutes");
 
@@ -15,6 +17,9 @@ app.use(express.json()); //Enable the use of JSON data
 app.get("/", (req, res) => {
   res.send("Hello from the backend -- You are currently at the / route");
 });
+
+//user routes
+app.use("/users", userRoutes);
 
 //add car routes here
 app.use("/cars", carRoutes);
