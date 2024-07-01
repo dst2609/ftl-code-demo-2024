@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import CarForm from "../CarForm/CarForm";
+import "../../App.css";
 
 const CarList = () => {
   const [cars, setCars] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null);
   const [make, setMake] = useState("");
   const [sort, setSort] = useState("");
+  const navigate = useNavigate();
 
   const fetchCars = async (params = {}) => {
     try {
@@ -22,8 +25,18 @@ const CarList = () => {
   };
 
   useEffect(() => {
-    fetchCars();
-  }, []);
+    // get the token if present
+    const token = localStorage.getItem("token");
+    if (!token) {
+      //if no token - user has to login
+      navigate("/login");
+    } else {
+      //if the token is there in localstorage - set the header
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      fetchCars();
+    }
+    // fetchCars();
+  }, [navigate]);
 
   const handleApply = () => {
     const params = {};
@@ -42,9 +55,9 @@ const CarList = () => {
   };
 
   return (
-    <div>
+    <div className="car-list-container">
       <h1>Car List</h1>
-      <div>
+      <div className="filters">
         <label>
           Filter by Make:
           <input
@@ -75,13 +88,14 @@ const CarList = () => {
         {cars.map((car) => (
           <li key={car.id}>
             {car.make} {car.model} ({car.year}) - {car.condition} - {car.fuel}
-            <button onClick={() => setSelectedCar(car)}>Edit</button>
-            <button onClick={() => handleDelete(car.id)}>Delete</button>
+            <div>
+              <button onClick={() => setSelectedCar(car)}>Edit</button>
+              <button onClick={() => handleDelete(car.id)}>Delete</button>
+            </div>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
 export default CarList;

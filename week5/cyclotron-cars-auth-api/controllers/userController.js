@@ -33,7 +33,7 @@ const login = async (req, res) => {
     // create a json web token
     const token = jwt.sign(
       { userId: user.id, userName: user.username }, //as a token encode info and respond to the client
-      "SECRET KEY"
+      "SECRET KEY" //setup env variable for secret key
     );
     res.status(200).json({ token });
   } else {
