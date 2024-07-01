@@ -32,7 +32,7 @@ const login = async (req, res) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     // create a json web token
     const token = jwt.sign(
-      { userId: user.id, userName: user.username },
+      { userId: user.id, userName: user.username }, //as a token encode info and respond to the client
       "SECRET KEY"
     );
     res.status(200).json({ token });
